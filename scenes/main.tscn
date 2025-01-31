@@ -1,0 +1,401 @@
+[gd_scene load_steps=16 format=3 uid="uid://dlwn2wem134el"]
+
+[ext_resource type="Script" path="res://scripts/background.gd" id="1_c57pl"]
+[ext_resource type="ArrayMesh" uid="uid://dl7t52b2yfymk" path="res://assets/kenney_furniture-kit/Models/OBJ format/chair.obj" id="2_vbqwq"]
+[ext_resource type="ArrayMesh" uid="uid://boks7uqkn0ive" path="res://assets/kenney_furniture-kit/Models/OBJ format/tableRound.obj" id="3_xma75"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="4_j33bp"]
+[ext_resource type="PackedScene" uid="uid://dulb0m8rqw2uf" path="res://scenes/game.tscn" id="5_brfi7"]
+[ext_resource type="PackedScene" uid="uid://babek6pwhu481" path="res://scenes/player.tscn" id="6_2mpxg"]
+[ext_resource type="FontFile" uid="uid://chaw02p6i1w6x" path="res://assets/fonts/kenvector_future2.ttf" id="6_j02qe"]
+[ext_resource type="AudioStream" uid="uid://cyq6wdgrgyekh" path="res://assets/audio/click_001.ogg" id="7_3xduc"]
+[ext_resource type="PackedScene" uid="uid://ybuk4o4nnkup" path="res://scenes/ui/player_label.tscn" id="7_q12vp"]
+[ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="8_6gnpo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hq0qy"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_e4ag6"]
+sky_material = SubResource("ProceduralSkyMaterial_hq0qy")
+
+[sub_resource type="Environment" id="Environment_7hob0"]
+background_mode = 1
+sky = SubResource("Sky_e4ag6")
+ambient_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh6in"]
+albedo_color = Color(0.16, 0.11008, 0.0768, 1)
+roughness = 0.93
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ouf0i"]
+material = SubResource("StandardMaterial3D_bh6in")
+size = Vector2(100, 100)
+
+[node name="main" type="Node"]
+
+[node name="main_menu" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="main_menu"]
+environment = SubResource("Environment_7hob0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="main_menu"]
+mesh = SubResource("PlaneMesh_ouf0i")
+skeleton = NodePath("../background")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="main_menu"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.65185, 0)
+light_energy = 2.214
+shadow_enabled = true
+
+[node name="background" type="Node3D" parent="main_menu"]
+script = ExtResource("1_c57pl")
+turn_speed = 3.0
+
+[node name="Node3D" type="Node3D" parent="main_menu/background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.344951, 0, -0.423568)
+
+[node name="Chair" type="MeshInstance3D" parent="main_menu/background/Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0144533, 0, 0.324848)
+mesh = ExtResource("2_vbqwq")
+skeleton = NodePath("../../..")
+
+[node name="Chair2" type="MeshInstance3D" parent="main_menu/background/Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.685547, 0, 0.524848)
+mesh = ExtResource("2_vbqwq")
+skeleton = NodePath("../../..")
+
+[node name="Chair3" type="MeshInstance3D" parent="main_menu/background/Node3D"]
+transform = Transform3D(0.999998, -0.000278281, 0.00172526, 0.000280283, 0.999999, -0.0011541, -0.00172494, 0.00115459, 0.999998, -0.235547, 0, 0.774848)
+mesh = ExtResource("2_vbqwq")
+skeleton = NodePath("../../..")
+
+[node name="Chair4" type="MeshInstance3D" parent="main_menu/background/Node3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.435547, 0, 0.0748477)
+mesh = ExtResource("2_vbqwq")
+skeleton = NodePath("../../..")
+
+[node name="TableRound" type="MeshInstance3D" parent="main_menu/background/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = ExtResource("3_xma75")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="main_menu"]
+transform = Transform3D(0.974473, 0.0767886, -0.210966, 9.15705e-05, 0.939552, 0.342406, 0.224506, -0.333685, 0.915561, -0.581686, 0.631314, 0.999459)
+
+[node name="main_menu_ui" type="Control" parent="main_menu/Camera3D" node_paths=PackedStringArray("main_menu", "camera", "main_container", "click_sound", "settings_popup", "about_popup", "new_game_popup", "new_game_name_line_edit", "new_game_address_line_edit", "lobby_popup", "lobby_start_button", "player_list")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_j33bp")
+main_menu = NodePath("../..")
+camera = NodePath("..")
+main_container = NodePath("main_container")
+click_sound = NodePath("click_sound")
+settings_popup = NodePath("settings_popup")
+about_popup = NodePath("about_popup")
+new_game_popup = NodePath("new_game_popup")
+new_game_name_line_edit = NodePath("new_game_popup/MarginContainer/VBoxContainer/new_game_name_line_edit")
+new_game_address_line_edit = NodePath("new_game_popup/MarginContainer/VBoxContainer/new_game_address_line_edit")
+lobby_popup = NodePath("lobby_popup")
+lobby_start_button = NodePath("lobby_popup/MarginContainer/VBoxContainer/lobby_start_button")
+player_list = NodePath("lobby_popup/MarginContainer/player_list")
+player_label_scene = ExtResource("7_q12vp")
+game_scene = ExtResource("5_brfi7")
+player_scene = ExtResource("6_2mpxg")
+
+[node name="main_container" type="MarginContainer" parent="main_menu/Camera3D/main_menu_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="title" type="Label" parent="main_menu/Camera3D/main_menu_ui/main_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 82
+text = "Secretive
+Shores"
+
+[node name="main_menu_buttons" type="VBoxContainer" parent="main_menu/Camera3D/main_menu_ui/main_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+
+[node name="new_game_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "New Game"
+alignment = 0
+
+[node name="settings_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Settings"
+alignment = 0
+
+[node name="about_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "About"
+alignment = 0
+
+[node name="exit_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Exit"
+alignment = 0
+
+[node name="new_game_popup" type="ColorRect" parent="main_menu/Camera3D/main_menu_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.380392)
+
+[node name="MarginContainer" type="MarginContainer" parent="main_menu/Camera3D/main_menu_ui/new_game_popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="title" type="Label" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 82
+text = "New Game"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+
+[node name="new_game_name_line_edit" type="LineEdit" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6gnpo")
+theme_override_font_sizes/font_size = 21
+text = "Player"
+placeholder_text = "Enter Name"
+max_length = 32
+expand_to_text_length = true
+
+[node name="new_game_address_line_edit" type="LineEdit" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_6gnpo")
+theme_override_font_sizes/font_size = 21
+text = "localhost"
+placeholder_text = "Enter Address"
+max_length = 32
+expand_to_text_length = true
+
+[node name="new_game_host_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Host"
+alignment = 0
+
+[node name="new_game_join_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Join"
+alignment = 0
+
+[node name="new_game_back_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Back"
+alignment = 0
+
+[node name="lobby_popup" type="ColorRect" parent="main_menu/Camera3D/main_menu_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.380392)
+
+[node name="MarginContainer" type="MarginContainer" parent="main_menu/Camera3D/main_menu_ui/lobby_popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="title" type="Label" parent="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 82
+text = "Lobby"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+
+[node name="lobby_start_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Start Game"
+alignment = 0
+
+[node name="lobby_disconnect_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Disconnect"
+alignment = 0
+
+[node name="player_list" type="VBoxContainer" parent="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="settings_popup" type="ColorRect" parent="main_menu/Camera3D/main_menu_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.380392)
+
+[node name="MarginContainer" type="MarginContainer" parent="main_menu/Camera3D/main_menu_ui/settings_popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="title" type="Label" parent="main_menu/Camera3D/main_menu_ui/settings_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 82
+text = "Settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main_menu/Camera3D/main_menu_ui/settings_popup/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="settings_back_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/settings_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Back"
+alignment = 0
+
+[node name="about_popup" type="ColorRect" parent="main_menu/Camera3D/main_menu_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.380392)
+
+[node name="MarginContainer" type="MarginContainer" parent="main_menu/Camera3D/main_menu_ui/about_popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="title" type="Label" parent="main_menu/Camera3D/main_menu_ui/about_popup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 82
+text = "About"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main_menu/Camera3D/main_menu_ui/about_popup/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="about_back_button" type="Button" parent="main_menu/Camera3D/main_menu_ui/about_popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("6_j02qe")
+theme_override_font_sizes/font_size = 26
+text = "Back"
+alignment = 0
+
+[node name="click_sound" type="AudioStreamPlayer" parent="main_menu/Camera3D/main_menu_ui"]
+stream = ExtResource("7_3xduc")
+
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons/new_game_button" to="main_menu/Camera3D/main_menu_ui" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons/settings_button" to="main_menu/Camera3D/main_menu_ui" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons/about_button" to="main_menu/Camera3D/main_menu_ui" method="_on_about_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/main_container/main_menu_buttons/exit_button" to="main_menu/Camera3D/main_menu_ui" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer/new_game_host_button" to="main_menu/Camera3D/main_menu_ui" method="_on_new_game_host_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer/new_game_join_button" to="main_menu/Camera3D/main_menu_ui" method="_on_new_game_join_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/new_game_popup/MarginContainer/VBoxContainer/new_game_back_button" to="main_menu/Camera3D/main_menu_ui" method="_on_new_game_back_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer/VBoxContainer/lobby_start_button" to="main_menu/Camera3D/main_menu_ui" method="_on_lobby_start_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/lobby_popup/MarginContainer/VBoxContainer/lobby_disconnect_button" to="main_menu/Camera3D/main_menu_ui" method="_on_lobby_disconnect_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/settings_popup/MarginContainer/VBoxContainer/settings_back_button" to="main_menu/Camera3D/main_menu_ui" method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="main_menu/Camera3D/main_menu_ui/about_popup/MarginContainer/VBoxContainer/about_back_button" to="main_menu/Camera3D/main_menu_ui" method="_on_about_back_button_pressed"]

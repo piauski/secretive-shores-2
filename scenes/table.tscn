@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs1axjwf301ul"]
+
+[ext_resource type="Script" path="res://scripts/table.gd" id="1_8ia2g"]
+[ext_resource type="ArrayMesh" uid="uid://boks7uqkn0ive" path="res://assets/kenney_furniture-kit/Models/OBJ format/tableRound.obj" id="2_p1u64"]
+[ext_resource type="PackedScene" uid="uid://b2t1qbuy2xwyo" path="res://scenes/board.tscn" id="3_byn8c"]
+
+[node name="table" type="Node3D" node_paths=PackedStringArray("player1_spawn", "player2_spawn", "player3_spawn", "player4_spawn")]
+script = ExtResource("1_8ia2g")
+player1_spawn = NodePath("player1_spawn")
+player2_spawn = NodePath("player2_spawn")
+player3_spawn = NodePath("player3_spawn")
+player4_spawn = NodePath("player4_spawn")
+
+[node name="table" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346377, 0.3, -0.4)
+mesh = ExtResource("2_p1u64")
+
+[node name="player1_spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, 0)
+
+[node name="player2_spawn" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.45, 0, 0)
+
+[node name="player3_spawn" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.45)
+
+[node name="player4_spawn" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.45)
+
+[node name="board" parent="." instance=ExtResource("3_byn8c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.4, 0)

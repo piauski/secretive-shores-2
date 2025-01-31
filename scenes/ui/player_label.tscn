@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ybuk4o4nnkup"]
+
+[ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="1_3q4xj"]
+
+[node name="player_label" type="Label"]
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_3q4xj")
+theme_override_font_sizes/font_size = 36
+text = "Player1"

@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dulb0m8rqw2uf"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_4yrx1"]
+[ext_resource type="PackedScene" uid="uid://bs1axjwf301ul" path="res://scenes/table.tscn" id="2_s7wb7"]
+[ext_resource type="PackedScene" uid="uid://babek6pwhu481" path="res://scenes/player.tscn" id="2_yqxux"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hq0qy"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_e4ag6"]
+sky_material = SubResource("ProceduralSkyMaterial_hq0qy")
+
+[sub_resource type="Environment" id="Environment_7hob0"]
+background_mode = 1
+sky = SubResource("Sky_e4ag6")
+ambient_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh6in"]
+albedo_color = Color(0.16, 0.11008, 0.0768, 1)
+roughness = 0.93
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ouf0i"]
+material = SubResource("StandardMaterial3D_bh6in")
+size = Vector2(100, 100)
+
+[node name="game" type="Node3D" node_paths=PackedStringArray("players", "table")]
+script = ExtResource("1_4yrx1")
+players = NodePath("players")
+table = NodePath("table")
+player_scene = ExtResource("2_yqxux")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7hob0")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ouf0i")
+skeleton = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.65185, 0)
+light_energy = 2.214
+shadow_enabled = true
+
+[node name="table" parent="." instance=ExtResource("2_s7wb7")]
+
+[node name="players" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.335882, 0, -0.414452)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("..")

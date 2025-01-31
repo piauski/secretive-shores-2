@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkvpcuugcfegk"]
+
+[ext_resource type="Texture2D" uid="uid://b7y5x2x0syvdi" path="res://assets/island/burning_blaze.png" id="1_k17qy"]
+[ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="2_j3i68"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xp6l"]
+transparency = 1
+albedo_texture = ExtResource("1_k17qy")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wisi2"]
+material = SubResource("StandardMaterial3D_5xp6l")
+size = Vector2(1, 1)
+
+[node name="tile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_wisi2")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.639)
+no_depth_test = true
+text = "Burning Blaze"
+font = ExtResource("2_j3i68")
