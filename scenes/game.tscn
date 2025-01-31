@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dulb0m8rqw2uf"]
+[gd_scene load_steps=12 format=3 uid="uid://dulb0m8rqw2uf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vvq60"]
 [ext_resource type="PackedScene" uid="uid://babek6pwhu481" path="res://scenes/player.tscn" id="2_3njwe"]
 [ext_resource type="PackedScene" uid="uid://bs1axjwf301ul" path="res://scenes/table.tscn" id="2_s7wb7"]
 [ext_resource type="PackedScene" uid="uid://b2t1qbuy2xwyo" path="res://scenes/board.tscn" id="3_rdcnc"]
+[ext_resource type="Material" uid="uid://svmvj0xuwjla" path="res://materials/outline.tres" id="5_16lh2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hq0qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,12 +28,16 @@ roughness = 0.93
 material = SubResource("StandardMaterial3D_bh6in")
 size = Vector2(100, 100)
 
-[node name="game" type="Node3D" node_paths=PackedStringArray("players", "table", "board")]
+[sub_resource type="Environment" id="Environment_qahj2"]
+
+[node name="game" type="Node3D" node_paths=PackedStringArray("players", "table", "board", "stencil_viewport", "stencil_camera")]
 script = ExtResource("1_vvq60")
 players = NodePath("players")
 table = NodePath("table")
 board = NodePath("board")
 player_scene = ExtResource("2_3njwe")
+stencil_viewport = NodePath("stencil_viewport")
+stencil_camera = NodePath("stencil_viewport/stencil_camera")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7hob0")
@@ -44,6 +49,7 @@ metadata/_edit_lock_ = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.65185, 0)
+light_cull_mask = 4294967263
 shadow_enabled = true
 
 [node name="table" parent="." instance=ExtResource("2_s7wb7")]
@@ -56,3 +62,23 @@ _spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
 spawn_path = NodePath("..")
 
 [node name="board" parent="." instance=ExtResource("3_rdcnc")]
+
+[node name="stencil_viewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+use_hdr_2d = true
+gui_disable_input = true
+size = Vector2i(1920, 1080)
+
+[node name="stencil_camera" type="Camera3D" parent="stencil_viewport"]
+cull_mask = 32
+environment = SubResource("Environment_qahj2")
+
+[node name="outline_rect" type="ColorRect" parent="."]
+material = ExtResource("5_16lh2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

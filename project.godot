@@ -21,6 +21,11 @@ Enum="*res://scripts/enum.gd"
 Lobby="*res://scripts/lobby.gd"
 Util="*res://scripts/util.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")

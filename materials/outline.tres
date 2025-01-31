@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://svmvj0xuwjla"]
+
+[ext_resource type="Shader" path="res://outline.gdshader" id="1_cp0fm"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j3yfd"]
+viewport_path = NodePath("stencil_viewport")
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_cp0fm")
+shader_parameter/lineWeight = 3.0
+shader_parameter/outlineColor = Color(3, 0.8, 0, 0.8)
+shader_parameter/stencilMask = SubResource("ViewportTexture_j3yfd")
