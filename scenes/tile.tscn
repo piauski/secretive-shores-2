@@ -1,24 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkvpcuugcfegk"]
+[gd_scene load_steps=7 format=3 uid="uid://bkvpcuugcfegk"]
 
-[ext_resource type="Texture2D" uid="uid://b7y5x2x0syvdi" path="res://assets/island/burning_blaze.png" id="1_k17qy"]
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_ri80y"]
+[ext_resource type="Material" uid="uid://btqkbywn4imbc" path="res://materials/tile_island_material.tres" id="2_bxdv5"]
+[ext_resource type="Material" uid="uid://diqwjer5fplop" path="res://materials/tile_background_material.tres" id="2_gbl0r"]
 [ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="2_j3i68"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xp6l"]
-transparency = 1
-albedo_texture = ExtResource("1_k17qy")
-texture_filter = 0
+[sub_resource type="BoxMesh" id="BoxMesh_bgwdn"]
+material = ExtResource("2_bxdv5")
+size = Vector3(1, 0.01, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_wisi2"]
-material = SubResource("StandardMaterial3D_5xp6l")
-size = Vector2(1, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_ju43x"]
+material = ExtResource("2_bxdv5")
+size = Vector3(1, 0.01, 1)
 
 [node name="tile" type="Node3D"]
+script = ExtResource("1_ri80y")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_wisi2")
+[node name="island_image" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0223331, -0.124318)
+mesh = SubResource("BoxMesh_bgwdn")
+
+[node name="background_image" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.34168, 0, 0, 0, 1, 0, 0, 0, 1.34168, 0, 0, 0)
+material_override = ExtResource("2_gbl0r")
+mesh = SubResource("BoxMesh_ju43x")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.639)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0252436, 0.514669)
 no_depth_test = true
+texture_filter = 5
+render_priority = 1
 text = "Burning Blaze"
 font = ExtResource("2_j3i68")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
