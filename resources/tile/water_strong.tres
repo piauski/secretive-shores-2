@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://drj1oxw05n4b0"]
+
+[ext_resource type="Texture2D" uid="uid://18da56va8psb" path="res://assets/island/raging_tides.png" id="1_jsdej"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_nkkff"]
+
+[resource]
+script = ExtResource("2_nkkff")
+name = "Raging Tides"
+image = ExtResource("1_jsdej")
+flags = 2
+spawned_totem = 2
+spawned_class = 0

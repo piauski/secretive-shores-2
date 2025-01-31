@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://cch7bjy1cq8dq"]
+
+[ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="1_gjq0f"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_6pjq1"]
+
+[resource]
+script = ExtResource("2_6pjq1")
+name = "Palm Cove"
+image = ExtResource("1_gjq0f")
+flags = 0
+spawned_totem = 0
+spawned_class = 0

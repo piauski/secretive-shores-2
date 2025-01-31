@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://xs4ed2yndmxg"]
+
+[ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="1_xs8bl"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_p13wc"]
+
+[resource]
+script = ExtResource("2_p13wc")
+name = "Hidden Grotto"
+image = ExtResource("1_xs8bl")
+flags = 2
+spawned_totem = 0
+spawned_class = 1

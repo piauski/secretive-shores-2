@@ -1,5 +1,6 @@
 extends Node
 
+# TODO: Make these into resources eventually
 enum Class {
 	NONE,
 	DIVER,
@@ -20,10 +21,18 @@ enum ClassSpecialAction {
 	SEND_CARD
 }
 
+# TODO: Make these into resources eventually
 enum Totem {
 	NONE,
-	AIR,
-	WATER,
-	EARTH,
-	FIRE,
+	AIR,	# Gale's Guardian
+	WATER,	# Tidal Grail
+	EARTH,	# Heart of the Mountain
+	FIRE,	# Inferno Shard
+}
+
+
+enum TileFlags {
+	FLOODED = 1 << 0,
+	ALWAYS_SPAWN = 1 << 1,
+	EXFIL = 1 << 2,
 }

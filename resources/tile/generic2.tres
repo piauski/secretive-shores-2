@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://5ehb6gax1a67"]
+
+[ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="1_gsled"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_fy0c2"]
+
+[resource]
+script = ExtResource("2_fy0c2")
+name = "Verdant Canopy"
+image = ExtResource("1_gsled")
+flags = 0
+spawned_totem = 0
+spawned_class = 0

@@ -3,7 +3,7 @@ class_name Player extends Node3D
 @export var camera: Camera3D
 @export var animation_player: AnimationPlayer
 
-@onready var board: Node3D = get_node("/root/game/table/board")
+@onready var board: Node3D = get_node("/root/game/board")
 @onready var tiles: Node3D = board.get_node("tiles")
 
 var turn := false
@@ -41,8 +41,5 @@ func set_spawn(spawn_pos: Transform3D):
 	
 	
 @rpc("any_peer", "call_local", "reliable")
-func set_board_rotation(rotation: Vector3):
-	print("Setting board rotation peer ", multiplayer.get_unique_id()," to ", rotation.y)
-	for tile in tiles.get_children():
-		tile.rotation.y = rotation.y
-	
+func set_board_rotation(y_rotation: float):
+	board.rotation.y = y_rotation

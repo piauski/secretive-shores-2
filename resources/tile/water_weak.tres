@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://cp82w0b56mrh6"]
+
+[ext_resource type="Texture2D" uid="uid://buoo6pt1l0jfw" path="res://assets/island/still_tides.png" id="1_8856h"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_8ik5r"]
+
+[resource]
+script = ExtResource("2_8ik5r")
+name = "Still Tides"
+image = ExtResource("1_8856h")
+flags = 2
+spawned_totem = 2
+spawned_class = 0

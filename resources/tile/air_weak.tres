@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://d2owflfv2tw2f"]
+
+[ext_resource type="Texture2D" uid="uid://caac3fk05pqw4" path="res://assets/island/wild_windsong.png" id="1_g5yqu"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_0uerj"]
+
+[resource]
+script = ExtResource("2_0uerj")
+name = "Wild Windsong"
+image = ExtResource("1_g5yqu")
+flags = 2
+spawned_totem = 1
+spawned_class = 0

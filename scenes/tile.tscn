@@ -1,21 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkvpcuugcfegk"]
+[gd_scene load_steps=6 format=3 uid="uid://bkvpcuugcfegk"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_ri80y"]
 [ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="2_j3i68"]
 [ext_resource type="PackedScene" uid="uid://cfn4teo88trxy" path="res://assets/models/tile.blend" id="2_og78w"]
 [ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="3_m3625"]
+[ext_resource type="Texture2D" uid="uid://b73qfrqs4mvci" path="res://assets/sprites/player/diver.png" id="4_0wg1j"]
 
-[node name="tile" type="Node3D"]
+[node name="tile" type="Node3D" node_paths=PackedStringArray("tile_image", "player_icon", "name_label")]
 script = ExtResource("1_ri80y")
+tile_image = NodePath("tile/tile_image")
+player_icon = NodePath("tile/player_icon")
+name_label = NodePath("name_label")
 
 [node name="tile" parent="." instance=ExtResource("2_og78w")]
 
-[node name="Sprite3D" type="Sprite3D" parent="tile"]
+[node name="tile_image" type="Sprite3D" parent="tile"]
 transform = Transform3D(5.70047, 0, 0, 0, -2.49175e-07, 5.70047, 0, -5.70047, -2.49175e-07, 0, 0.254113, -0.125)
+shaded = true
+no_depth_test = true
 texture_filter = 0
 texture = ExtResource("3_m3625")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="player_icon" type="Sprite3D" parent="tile"]
+transform = Transform3D(1.40451, 0, 0, 0, -6.13932e-08, 1.40451, 0, -1.40451, -6.13932e-08, -0.472047, 0.272113, 0.350837)
+shaded = true
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("4_0wg1j")
+
+[node name="name_label" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.26925, 0.720412)
 double_sided = false
 no_depth_test = true

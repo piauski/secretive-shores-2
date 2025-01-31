@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://ckmt4fx4c541n"]
+
+[ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="1_ynne8"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_x6628"]
+
+[resource]
+script = ExtResource("2_x6628")
+name = "Ancient Temple"
+image = ExtResource("1_ynne8")
+flags = 0
+spawned_totem = 0
+spawned_class = 0

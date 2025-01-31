@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://cbcvkrss4ogd7"]
+
+[ext_resource type="Texture2D" uid="uid://b04v2pmaks5i5" path="res://assets/island/rusty_hangar.png" id="1_6hpi6"]
+[ext_resource type="Script" path="res://resources/tile.gd" id="2_ojmeo"]
+
+[resource]
+script = ExtResource("2_ojmeo")
+name = "Rusty Hangar"
+image = ExtResource("1_6hpi6")
+flags = 2
+spawned_totem = 0
+spawned_class = 4
