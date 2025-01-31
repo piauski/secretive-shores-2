@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PawnResource" load_steps=3 format=3 uid="uid://dvjkfa4lqrios"]
+
+[ext_resource type="Texture2D" uid="uid://cwuyk14kcjgjt" path="res://assets/sprites/player/engineer.png" id="1_px5dw"]
+[ext_resource type="Script" path="res://resources/pawn.gd" id="2_737bt"]
+
+[resource]
+script = ExtResource("2_737bt")
+name = "Engineer"
+clazz = 2
+special_action = 2
+image = ExtResource("1_px5dw")
+pawn_color = Color(0.682353, 0.137255, 0.203922, 1)

@@ -6,6 +6,10 @@ class_name Board extends Node3D
 @export var tile_scene: PackedScene
 @export var tile_resources_dir: String
 
+@export var pawn_parent: Node3D
+@export var pawn_scene: PackedScene
+@export var pawn_resources_dir: String
+
 const ISLAND_SHAPE: Array = [
 	[0, 0, 1, 1, 0, 0],
 	[0, 1, 1, 1, 1, 0],
@@ -16,6 +20,7 @@ const ISLAND_SHAPE: Array = [
 ]
 
 var tiles: Array[Tile]
+var pawns: Array[Pawn]
 
 func count_island_tiles() -> int:
 	var count = 0
@@ -80,7 +85,7 @@ func generate_tiles(seed_value):
 				continue
 			# Place island here
 			var tile = tiles[tile_idx]
-			tile.position = Vector3(row_idx * spacing - offset_x, 0.01, col_idx * spacing - offset_z)
+			tile.position = Vector3(row_idx * spacing - offset_x, 0.016, col_idx * spacing - offset_z)
 			tile.row = row_idx
 			tile.col = col_idx
 			tile_idx += 1
@@ -106,8 +111,6 @@ func generate_tiles_from_data(tile_data: Array) -> void:
 		tile.queue_free()
 	tiles.clear()
 	
-	# Spawn tiles from synchronized data
-	# Spawn tiles from synchronized data
 	for data in tile_data:
 		var resource = load(data["resource_path"])
 		if !resource:
@@ -125,3 +128,63 @@ func generate_tiles_from_data(tile_data: Array) -> void:
 		print("Tile positioned: ", new_tile.position, " (expected: ", data["position"], ")")
 		print("Tile name: ", new_tile.name)
 		tiles.append(new_tile)
+
+
+func get_tile_from_row_col(row: int, col: int) -> Tile:
+	var tiles = tiles.filter(func(tile: Tile): return tile.row == row and tile.col == col)
+	return tiles[0] if tiles else null
+
+func get_spawn_tiles_for_class(clazz: Enum.Class) -> Array[Tile]:
+	return tiles.filter(func(child): return child.spawned_class == clazz)
+
+
+func generate_pawns() -> void:
+	var pawn_resources = Util.load_all_resources_in_dir(pawn_resources_dir) as Array[PawnResource]
+	Util.seeded_shuffle(pawn_resources)
+	pawn_resources.resize(Lobby.players.size())
+	for resource in pawn_resources:
+		var new_pawn = pawn_scene.instantiate() as Pawn
+		pawn_parent.add_child(new_pawn)
+		pawns.append(new_pawn)
+		new_pawn.resource = resource
+		new_pawn.scale = Vector3(0.016, 0.016, 0.016)
+		var spawn_tiles = get_spawn_tiles_for_class(new_pawn.clazz)
+		new_pawn.tile = spawn_tiles.pick_random()
+
+
+func get_pawn_data() -> Array:
+	var pawn_data: Array = []
+	for pawn in pawns:
+		pawn_data.append({
+			"resource_path": pawn.resource.resource_path,
+			"position": pawn.position,
+			"scale": pawn.scale.x,
+			"row": pawn.row,
+			"col": pawn.col
+		})
+	return pawn_data
+		
+
+func generate_pawns_from_data(pawn_data: Array) -> void:
+	# Clear existing tiles
+	for pawn in pawns:
+		pawn.queue_free()
+	pawns.clear()
+	
+	for data in pawn_data:
+		var resource = load(data["resource_path"])
+		if !resource:
+			printerr("Failed to load resource: ", data["resource_path"])
+			continue
+		print(multiplayer.get_unique_id(), " Loaded pawn: ", data)
+		var new_pawn = pawn_scene.instantiate() as Pawn
+		pawn_parent.add_child(new_pawn)
+		new_pawn.resource = resource
+		new_pawn.position = data["position"]
+		var scale = data["scale"]
+		new_pawn.scale = Vector3(scale, scale, scale)
+		var tile = get_tile_from_row_col(data["row"], data["col"])
+		new_pawn.tile = tile
+		print("Pawn positioned: ", new_pawn.position, " (expected: ", data["position"], ")")
+		print("Pawn name: ", new_pawn.name)
+		pawns.append(new_pawn)

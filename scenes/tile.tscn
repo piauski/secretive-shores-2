@@ -15,23 +15,20 @@ name_label = NodePath("name_label")
 [node name="tile" parent="." instance=ExtResource("2_og78w")]
 
 [node name="tile_image" type="Sprite3D" parent="tile"]
-transform = Transform3D(5.70047, 0, 0, 0, -2.49175e-07, 5.70047, 0, -5.70047, -2.49175e-07, 0, 0.254113, -0.125)
+transform = Transform3D(5.70047, 0, 0, 0, -2.49175e-07, 5.70047, 0, -5.70047, -2.49175e-07, 0, 0.0121372, -0.125)
 shaded = true
-no_depth_test = true
 texture_filter = 0
 texture = ExtResource("3_m3625")
 
 [node name="player_icon" type="Sprite3D" parent="tile"]
-transform = Transform3D(1.40451, 0, 0, 0, -6.13932e-08, 1.40451, 0, -1.40451, -6.13932e-08, -0.472047, 0.272113, 0.350837)
+transform = Transform3D(1.40451, 0, 0, 0, -6.13932e-08, 1.40451, 0, -1.40451, -6.13932e-08, -0.472047, 0.0301372, 0.350837)
 shaded = true
-no_depth_test = true
 texture_filter = 0
 texture = ExtResource("4_0wg1j")
 
 [node name="name_label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.26925, 0.720412)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0272742, 0.720412)
 double_sided = false
-no_depth_test = true
 texture_filter = 5
 render_priority = 1
 text = "Burning Blaze"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PawnResource" load_steps=3 format=3 uid="uid://ciljxngufqfml"]
+
+[ext_resource type="Texture2D" uid="uid://b73qfrqs4mvci" path="res://assets/sprites/player/diver.png" id="1_ib23y"]
+[ext_resource type="Script" path="res://resources/pawn.gd" id="1_t747h"]
+
+[resource]
+script = ExtResource("1_t747h")
+name = "Diver"
+clazz = 1
+special_action = 1
+image = ExtResource("1_ib23y")
+pawn_color = Color(0.196078, 0.2, 0.32549, 1)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd5y02j41e5d6"]
+
+[ext_resource type="Script" path="res://scripts/pawn.gd" id="1_6c7ch"]
+[ext_resource type="PackedScene" uid="uid://c5dm2t1c2gjar" path="res://assets/models/pawn.blend" id="1_a3gon"]
+
+[node name="pawn" type="Node3D"]
+script = ExtResource("1_6c7ch")
+
+[node name="pawn" parent="." instance=ExtResource("1_a3gon")]

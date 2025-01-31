@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PawnResource" load_steps=3 format=3 uid="uid://dku346mfbxti4"]
+
+[ext_resource type="Texture2D" uid="uid://cgcvb1csnh6ih" path="res://assets/sprites/player/navigator.png" id="1_0qj0k"]
+[ext_resource type="Script" path="res://resources/pawn.gd" id="2_p74cf"]
+
+[resource]
+script = ExtResource("2_p74cf")
+name = "Navigator"
+clazz = 3
+special_action = 3
+image = ExtResource("1_0qj0k")
+pawn_color = Color(0.976471, 0.760784, 0.168627, 1)

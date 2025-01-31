@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PawnResource" load_steps=3 format=3 uid="uid://fk4qrtuof5bo"]
+
+[ext_resource type="Texture2D" uid="uid://of70uf7rlkah" path="res://assets/sprites/player/pilot.png" id="1_85t5l"]
+[ext_resource type="Script" path="res://resources/pawn.gd" id="2_w7inp"]
+
+[resource]
+script = ExtResource("2_w7inp")
+name = "Pilot"
+clazz = 4
+special_action = 4
+image = ExtResource("1_85t5l")
+pawn_color = Color(0.301961, 0.607843, 0.901961, 1)

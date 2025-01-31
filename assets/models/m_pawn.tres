@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://baipqpjmvdr84"]
+
+[ext_resource type="Texture2D" uid="uid://7rp1wjb6v7pu" path="res://assets/models/pawn_texture.png" id="1_cgunj"]
+
+[resource]
+resource_name = "m_pawn"
+cull_mode = 2
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("1_cgunj")
+roughness = 0.59
+emission = Color(0.876846, 0.0672371, 0.195146, 1)
+emission_energy_multiplier = 0.36
+clearcoat_enabled = true
+texture_filter = 0
