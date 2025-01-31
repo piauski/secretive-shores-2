@@ -1,0 +1,29 @@
+extends Node
+
+enum Class {
+	NONE,
+	DIVER,
+	ENGINEER,
+	NAVIGATOR,
+	PILOT,
+	EXPLORER,
+	MESSENGER,
+}
+
+enum ClassSpecialAction {
+	NONE,
+	DIVE_HERE,
+	SHORE_UP_TWICE,
+	MOVE_ANOTHER_PLAYER_TWICE,
+	FLY_HERE,
+	MOVE_SHORE_UP_DIAG,
+	SEND_CARD
+}
+
+enum Totem {
+	NONE,
+	AIR,
+	WATER,
+	EARTH,
+	FIRE,
+}

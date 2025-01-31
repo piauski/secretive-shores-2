@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjlpftmtdl3h1"]
+
+[ext_resource type="PackedScene" uid="uid://cfn4teo88trxy" path="res://assets/models/tile.blend" id="1_mfha1"]
+[ext_resource type="Material" uid="uid://b7kmerm518k34" path="res://assets/models/m_tile2.tres" id="2_lvahp"]
+
+[node name="tile" instance=ExtResource("1_mfha1")]
+
+[node name="Cube" parent="." index="0"]
+material_override = ExtResource("2_lvahp")

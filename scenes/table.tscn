@@ -4,8 +4,9 @@
 [ext_resource type="ArrayMesh" uid="uid://boks7uqkn0ive" path="res://assets/kenney_furniture-kit/Models/OBJ format/tableRound.obj" id="2_p1u64"]
 [ext_resource type="PackedScene" uid="uid://b2t1qbuy2xwyo" path="res://scenes/board.tscn" id="3_byn8c"]
 
-[node name="table" type="Node3D" node_paths=PackedStringArray("player1_spawn", "player2_spawn", "player3_spawn", "player4_spawn")]
+[node name="table" type="Node3D" node_paths=PackedStringArray("board", "player1_spawn", "player2_spawn", "player3_spawn", "player4_spawn")]
 script = ExtResource("1_8ia2g")
+board = NodePath("board")
 player1_spawn = NodePath("player1_spawn")
 player2_spawn = NodePath("player2_spawn")
 player3_spawn = NodePath("player3_spawn")

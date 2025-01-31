@@ -1,36 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkvpcuugcfegk"]
+[gd_scene load_steps=5 format=3 uid="uid://bkvpcuugcfegk"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_ri80y"]
-[ext_resource type="Material" uid="uid://btqkbywn4imbc" path="res://materials/tile_island_material.tres" id="2_bxdv5"]
-[ext_resource type="Material" uid="uid://diqwjer5fplop" path="res://materials/tile_background_material.tres" id="2_gbl0r"]
 [ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="2_j3i68"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_bgwdn"]
-material = ExtResource("2_bxdv5")
-size = Vector3(1, 0.01, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ju43x"]
-material = ExtResource("2_bxdv5")
-size = Vector3(1, 0.01, 1)
+[ext_resource type="PackedScene" uid="uid://cfn4teo88trxy" path="res://assets/models/tile.blend" id="2_og78w"]
+[ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="3_m3625"]
 
 [node name="tile" type="Node3D"]
 script = ExtResource("1_ri80y")
 
-[node name="island_image" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0223331, -0.124318)
-mesh = SubResource("BoxMesh_bgwdn")
+[node name="tile" parent="." instance=ExtResource("2_og78w")]
 
-[node name="background_image" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.34168, 0, 0, 0, 1, 0, 0, 0, 1.34168, 0, 0, 0)
-material_override = ExtResource("2_gbl0r")
-mesh = SubResource("BoxMesh_ju43x")
+[node name="Sprite3D" type="Sprite3D" parent="tile"]
+transform = Transform3D(5.70047, 0, 0, 0, -2.49175e-07, 5.70047, 0, -5.70047, -2.49175e-07, 0, 0.254113, -0.125)
+texture_filter = 0
+texture = ExtResource("3_m3625")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0252436, 0.514669)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.26925, 0.720412)
+double_sided = false
 no_depth_test = true
 texture_filter = 5
 render_priority = 1
 text = "Burning Blaze"
 font = ExtResource("2_j3i68")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

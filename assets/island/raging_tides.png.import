@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://18da56va8psb"
-path.s3tc="res://.godot/imported/raging_tides.png-2bbb4fbf66bcea28df06b37803b3a245.s3tc.ctex"
+path="res://.godot/imported/raging_tides.png-2bbb4fbf66bcea28df06b37803b3a245.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/island/raging_tides.png"
-dest_files=["res://.godot/imported/raging_tides.png-2bbb4fbf66bcea28df06b37803b3a245.s3tc.ctex"]
+dest_files=["res://.godot/imported/raging_tides.png-2bbb4fbf66bcea28df06b37803b3a245.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

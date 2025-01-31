@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bl7t1e7oeowrk"]
+
+[ext_resource type="Texture2D" uid="uid://coeyaq13tnpnq" path="res://assets/models/tile_texture.png" id="1_1kj68"]
+
+[resource]
+resource_name = "m_tile"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+emission_enabled = true
+emission_texture = ExtResource("1_1kj68")
+texture_filter = 0

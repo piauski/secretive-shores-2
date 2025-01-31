@@ -1,5 +1,7 @@
 class_name Table extends Node3D
 
+@export var board: Board
+
 @export var player1_spawn: Node3D
 @export var player2_spawn: Node3D
 @export var player3_spawn: Node3D
