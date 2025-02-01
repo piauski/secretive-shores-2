@@ -36,3 +36,9 @@ enum TileFlags {
 	ALWAYS_SPAWN = 1 << 1,
 	EXFIL = 1 << 2,
 }
+
+enum ClickAction {
+	NONE,
+	TILE,
+	PAWN
+}

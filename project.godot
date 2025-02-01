@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Enum="*res://scripts/enum.gd"
 Lobby="*res://scripts/lobby.gd"
 Util="*res://scripts/util.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [display]
 

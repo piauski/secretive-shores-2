@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkvpcuugcfegk"]
+[gd_scene load_steps=11 format=3 uid="uid://bkvpcuugcfegk"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_ri80y"]
 [ext_resource type="FontFile" uid="uid://cfeyjnvuiaawf" path="res://assets/fonts/kenvector_future_thin2.ttf" id="2_j3i68"]
@@ -6,27 +6,158 @@
 [ext_resource type="Texture2D" uid="uid://y5fjxcttc0qh" path="res://assets/island/missing.png" id="3_m3625"]
 [ext_resource type="Texture2D" uid="uid://b73qfrqs4mvci" path="res://assets/sprites/player/diver.png" id="4_0wg1j"]
 
-[node name="tile" type="Node3D" node_paths=PackedStringArray("tile_image", "player_icon", "name_label")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwrx3"]
+size = Vector3(1.94141, 0.249634, 1.92969)
+
+[sub_resource type="Animation" id="Animation_ehnkq"]
+resource_name = "flood"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.225313, 4, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.079, 0), Vector3(0, -0.25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tile:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(5.27803, 0.189465, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5708), Vector3(0, 0, -3.12414)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("decoration:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.329877, 5.65686, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.44928, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ql71v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tile:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("decoration:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_twhea"]
+resource_name = "shore_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.217638, 3.86374, 1),
+"update": 0,
+"values": [Vector3(0, -0.25, 0), Vector3(0, 1.079, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tile:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(5.09824, 0.189465, 1),
+"update": 0,
+"values": [Vector3(0, 0, -3.12414), Vector3(0, 0, -1.5708), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("decoration:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.217638, 3.86374, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.44928, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iay62"]
+_data = {
+"RESET": SubResource("Animation_ql71v"),
+"flood": SubResource("Animation_ehnkq"),
+"shore_up": SubResource("Animation_twhea")
+}
+
+[node name="tile" type="Node3D" node_paths=PackedStringArray("tile_image", "player_icon", "name_label", "animation_player")]
 script = ExtResource("1_ri80y")
-tile_image = NodePath("tile/tile_image")
-player_icon = NodePath("tile/player_icon")
-name_label = NodePath("name_label")
+tile_image = NodePath("decoration/tile_image")
+player_icon = NodePath("decoration/player_icon")
+name_label = NodePath("decoration/name_label")
+animation_player = NodePath("animation_player")
 
 [node name="tile" parent="." instance=ExtResource("2_og78w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="tile_image" type="Sprite3D" parent="tile"]
+[node name="decoration" type="Node3D" parent="."]
+
+[node name="tile_image" type="Sprite3D" parent="decoration"]
 transform = Transform3D(5.70047, 0, 0, 0, -2.49175e-07, 5.70047, 0, -5.70047, -2.49175e-07, 0, 0.0121372, -0.125)
 shaded = true
 texture_filter = 0
 texture = ExtResource("3_m3625")
 
-[node name="player_icon" type="Sprite3D" parent="tile"]
+[node name="player_icon" type="Sprite3D" parent="decoration"]
 transform = Transform3D(1.40451, 0, 0, 0, -6.13932e-08, 1.40451, 0, -1.40451, -6.13932e-08, -0.472047, 0.0301372, 0.350837)
 shaded = true
 texture_filter = 0
 texture = ExtResource("4_0wg1j")
 
-[node name="name_label" type="Label3D" parent="."]
+[node name="name_label" type="Label3D" parent="decoration"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0272742, 0.720412)
 double_sided = false
 texture_filter = 5
@@ -34,4 +165,19 @@ render_priority = 1
 text = "Burning Blaze"
 font = ExtResource("2_j3i68")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.126282, 0)
+shape = SubResource("BoxShape3D_nwrx3")
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iay62")
+}
+playback_auto_capture_transition_type = 3
+playback_auto_capture_ease_type = 2
+playback_default_blend_time = 0.5
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

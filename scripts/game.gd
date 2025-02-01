@@ -6,6 +6,7 @@ signal player_added(Node3D)
 @export var table: Table
 @export var board: Board
 
+
 @export var player_scene: PackedScene
 
 @export var stencil_viewport: SubViewport
@@ -19,7 +20,7 @@ func _ready() -> void:
 		board.generate_pawns()
 	
 	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
-
+	
 
 @rpc("any_peer", "call_local", "reliable")
 func synchronize_board(tile_data: Array) -> void:
@@ -46,7 +47,7 @@ func start_game() -> void:
 		synchronize_pawns.rpc_id(peer_id, board.get_pawn_data())
 		player.set_board_rotation.rpc_id(peer_id, spawn.rotation.y + PI / 2)
 		i += 1
-	
+		
 
 func _process(_delta: float) -> void:
 	var viewport := get_viewport()

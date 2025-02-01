@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dulb0m8rqw2uf"]
+[gd_scene load_steps=14 format=3 uid="uid://dulb0m8rqw2uf"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vvq60"]
 [ext_resource type="PackedScene" uid="uid://babek6pwhu481" path="res://scenes/player.tscn" id="2_3njwe"]
 [ext_resource type="PackedScene" uid="uid://bs1axjwf301ul" path="res://scenes/table.tscn" id="2_s7wb7"]
 [ext_resource type="PackedScene" uid="uid://b2t1qbuy2xwyo" path="res://scenes/board.tscn" id="3_rdcnc"]
 [ext_resource type="Material" uid="uid://svmvj0xuwjla" path="res://materials/outline.tres" id="5_16lh2"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_5h67w"]
+[ext_resource type="Script" path="res://scripts/states/game/setup.gd" id="7_5yvci"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hq0qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -47,7 +49,7 @@ mesh = SubResource("PlaneMesh_ouf0i")
 skeleton = NodePath("")
 metadata/_edit_lock_ = true
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="spot_light" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.65185, 0)
 light_cull_mask = 4294967263
 shadow_enabled = true
@@ -82,3 +84,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_5h67w")
+initial_state = NodePath("game_setup")
+
+[node name="game_setup" type="Node" parent="state_machine" node_paths=PackedStringArray("players", "table", "board")]
+script = ExtResource("7_5yvci")
+players = NodePath("../../players")
+table = NodePath("../../table")
+board = NodePath("../../board")
+player_scene = ExtResource("2_3njwe")

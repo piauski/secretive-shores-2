@@ -22,16 +22,24 @@ var tile: Tile:
 		cell_pos = tile.cell_pos
 		position = tile.position
 
+var is_hovered := false
 
 var clazz: Enum.Class
 var special_action: Enum.ClassSpecialAction
 var image: CompressedTexture2D
 var pawn_color: Color
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	pawn_mesh.material_override = preload("res://assets/models/m_pawn.tres").duplicate() as BaseMaterial3D
 	pawn_mesh.material_override.emission_energy_multiplier = 0.2
+	
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if is_hovered:
+				GameManager.handle_click_event.rpc_id(1, Enum.ClickAction.PAWN, row, col)
 
 func load_resource(res: PawnResource) -> void:
 	set_name(res.name)
@@ -41,3 +49,13 @@ func load_resource(res: PawnResource) -> void:
 	pawn_color = res.pawn_color
 	pawn_mesh.material_override.albedo_color = res.pawn_color
 	pawn_mesh.material_override.emission = res.pawn_color
+
+
+func _on_area_3d_mouse_entered() -> void:
+	is_hovered = true
+	pawn_mesh.set_layer_mask_value(6, true)
+
+
+func _on_area_3d_mouse_exited() -> void:
+	is_hovered = false
+	pawn_mesh.set_layer_mask_value(6, false)
